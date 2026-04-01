@@ -1,6 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+/*
+/* Ellipse 5 
+
+position: absolute;
+width: 900.5px;
+height: 1849.5px;
+left: -573.5px;
+top: -152.5px;
+
+background: #E3D1FA;
 
 
+ Ellipse 7 */
+/* Rectangle 1 
+position: absolute;
+width: 1402px;
+height: 1207px;
+left: 1047px;
+top: -312px;
+
+background: #E3D1FA;
+ Note: backdrop-filter has minimal browser support */
 
 @font-face {
     font-family: "circularStd";
@@ -23,9 +43,6 @@ body {
     height: 100%;
     width: 100%;
     background-color: #100420;
-    background-image: url(./src/img/bg.png);
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 header {
@@ -36,9 +53,12 @@ header {
     padding-inline: 3%;
     width: 100%;
     height: 15%;
+    z-index: 999;
+
 }
 
 nav {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -47,17 +67,68 @@ nav {
     height: 70px;
     border-radius: 10px;
     box-shadow: 0px 8px 13px 0px rgba(0, 0, 0, 0.25);
-    border: 2px solid rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(2px);
-
+    backdrop-filter: blur(4px);
+    z-index: 999;
 
 }
 
 nav a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     color: white;
     text-decoration: none;
     font-size: 1rem;
+    transition: 0.5s;
+    width: 100px;
+    height: 0px;
+    border-radius: 10px;
+}
+
+nav a:first-child {
+    width: 180px;
+}
+
+nav a:hover {
+    width: calc(30% + 10px);
+    height: 30px;
+    background-color: #9163ce;
+    border: 0.2px solid rgb(255, 255, 255);
+}
+
+.main-bg {
+    position: absolute;
+    width: 100%;
+    height: 2200px;
+    left: 0px;
+    top: 0px;
+    background: rgba(16, 4, 32, 0.02);
+    overflow: hidden;
+}
+
+.ellipse1 {
+    position: absolute;
+    width: 900.5px;
+    height: 1849.5px;
+    left: -653.5px;
+    top: -152.5px;
+    background: #E3D1FA;
+    filter: blur(200px);
+    border-radius: 80010px;
+}
+
+.ellipse2 {
+    position: absolute;
+    width: 1402px;
+    height: 1207px;
+    left: 1047px;
+    top: -312px;
+    background: #E3D1FA;
+    filter: blur(120px);
+    border-radius: 800px;
 }
 
 main {
@@ -112,6 +183,7 @@ main {
     width: 8rem;
     border-radius: 45px;
     z-index: 0;
+    font-weight: 500;
 }
 
 .options span {
@@ -121,8 +193,9 @@ main {
 }
 
 .options a:first-child {
-    background-color: black;
-    box-shadow: inset 0px -4px 5px 0px rgba(255, 255, 255, 0.46);
+    box-shadow: inset 0px -4px 5px rgba(255, 255, 255, 0.23);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
 }
 
 .options a .github-effect {
@@ -133,7 +206,16 @@ main {
     filter: blur(2px);
     z-index: -999;
     border-radius: 45px;
+    transition: 0.25s;
 }
+
+.options a:hover .github-effect,
+.options a:first-child:hover {
+    background-color: #f1f1f1;
+    color: #1a1a1a;
+
+}
+
 
 .options a:nth-child(2) {
     background-color: #0084FF;
@@ -148,12 +230,27 @@ main {
     filter: blur(2px);
     z-index: -999;
     border-radius: 45px;
+    transition: 0.25s;
+}
+
+.options a:hover .linkedin-effect,
+.options a:nth-child(2):hover {
+    background-color: #034383;
+    color: rgb(255, 255, 255);
+
 }
 
 .options a:last-child {
-    background-color: #FFFFFF;
+    background-color: #d5d2d2;
     box-shadow: inset 0px -4px 5px 0px rgba(0, 0, 0, 0.557);
     color: black;
+    transition: 0.25s;
+}
+
+.options a:hover .gmail-effect,
+.options a:last-child:hover {
+    background-color: #585454;
+    color: white;
 }
 
 .options a .gmail-effect {
@@ -170,7 +267,7 @@ main {
     width: 30%;
     border-radius: 400px;
     border: 2px solid rgb(255, 255, 255);
-
+    z-index: 100;
 }
 
 .stacks {
@@ -180,6 +277,7 @@ main {
     gap: 4rem;
     width: 100%;
     height: 30rem;
+    overflow: hidden;
 }
 
 .stacks-list {
@@ -189,18 +287,19 @@ main {
 }
 
 .bg-text span {
-font-style: normal;
-font-weight: 500;
-font-size: 500px;
-line-height: 633px;
-background: linear-gradient(226.28deg, #6315B7 25.56%, #000000 85.4%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 500px;
+    line-height: 633px;
+    background: linear-gradient(226.28deg, #6315B7 25.56%, #000000 85.4%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 
 }
 
 .bg-text {
+
     width: 100%;
     min-height: 100%;
 }
@@ -217,24 +316,24 @@ background-clip: text;
 }
 
 .frame {
-    position: absolute;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     width: 316px;
     height: 273px;
-    left: 238px;
-    top: 1046px;
     overflow: hidden;
     border-radius: 20px;
-
 }
 
 .frame .gradient1 {
-
     position: absolute;
     width: 408px;
     height: 164px;
     left: -69px;
     top: 117px;
-
     background: #5B15B7;
     filter: blur(50px);
 }
@@ -248,6 +347,7 @@ background-clip: text;
     transition: 1s;
     background: #FFFFFF;
     filter: blur(50px);
+    z-index: 0;
 }
 
 .frame .gradient3 {
@@ -259,6 +359,10 @@ background-clip: text;
     border-radius: 21px;
     box-shadow: inset 0 0 5px 2px white;
     transition: 0.5s;
+    filter: blur(2px);
+    border-radius: 21px;
+    z-index: 1;
+
 }
 
 .frame:hover .gradient3 {
@@ -270,14 +374,37 @@ background-clip: text;
     top: 100px;
 }
 
+.frame img {
+    position: absolute;
+    z-index: 2;
+    transition: 1.2s;
+    top: 110px;
+}
+.frame:hover img{
+    color: white;
+    top: 60px
+}
+.frame span{
+    text-align: center;
+    position: absolute;
+    z-index: 2;
+    transition: 1.2s;
+    font-size: 0.8rem;
+    bottom: 0px;
+    opacity: 0%;
+    padding: 10px;
+}
+.frame:hover span{
+    font-size: 0.8rem;
+    opacity: 100%;
+    bottom: 40px;
+    padding: 10px;
+    color: black;
+}
 .frame2 {
     box-sizing: border-box;
-
-    position: absolute;
     width: 316px;
     height: 273px;
-    left: 614px;
-    top: 1046px;
     overflow: hidden;
     border-radius: 20px;
     transform: matrix(-1, 0, 0, 1, 0, 0);
@@ -304,7 +431,12 @@ background-clip: text;
 
     background: #FFFFFF;
     filter: blur(50px);
-    transform: matrix(-1, 0, 0, 1, 0, 0);
+    transition: 0.5s;
+}
+
+.frame2:hover .gradient2 {
+    top: 120px;
+    transform: rotateX(55deg);
 }
 
 .frame2 .gradient3 {
@@ -315,8 +447,13 @@ background-clip: text;
     height: 273px;
     left: 0px;
     top: 0px;
-
+    box-shadow: inset 0 0 10px 2px white;
     filter: blur(2px);
     border-radius: 21px;
     transform: matrix(-1, 0, 0, 1, 0, 0);
+    transition: 0.5s;
+}
+
+.frame2:hover .gradient3 {
+    box-shadow: inset 0 0 12px 2px white;
 }
