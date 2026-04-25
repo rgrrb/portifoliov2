@@ -25,3 +25,20 @@ document.getElementById("back").addEventListener("click", (e) => {
 
   requestAnimationFrame(scrollStep);
 });
+
+const createObserver = (threshold) => {
+  return new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold });
+};
+  
+document.querySelectorAll('.stacks, .projects, .text-gradient')
+  .forEach(el => createObserver(0.5).observe(el));
+
+document.querySelectorAll('.hero')
+  .forEach(el => createObserver(0.3).observe(el));
